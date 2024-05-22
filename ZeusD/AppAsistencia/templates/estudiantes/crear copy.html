@@ -1,0 +1,41 @@
+{% extends "plantilla.html" %}
+
+{% block titulo %} Zeus - Crear Estudiante {% endblock %}
+
+{% block contenido %} 
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Crear Estudiante</h2>
+        </div>
+        <div class="card-body">
+            <form action="{% url 'crear' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="nombres">Nombres:</label>
+                    <input type="text" class="form-control" id="nombres" name="nombres" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+                </div>
+                <div class="form-group">
+                    <label for="foto">Foto:</label>
+                    <input type="file" class="form-control-file" id="foto" name="foto">
+                </div>
+                <div class="form-group">
+                    <label for="clase">Clase:</label>
+                    <select class="form-control" id="clase" name="clase" required>
+                        <option value="">Seleccione una clase</option>
+                        <option value="Emprendimiento">Emprendimiento</option>
+                        <option value="Ambiental I">Ambiental I</option>
+                        <!-- Agregar más opciones de clases aquí -->
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Crear Estudiante</button>
+            </form>
+        </div>
+        <div class="card-footer text-muted">Ing. José Omar Calderón G.</div>
+    </div>
+
+{% endblock %}

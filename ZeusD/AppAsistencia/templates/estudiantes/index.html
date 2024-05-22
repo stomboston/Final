@@ -1,0 +1,68 @@
+{% extends "plantilla.html" %}
+
+{% block titulo %} Zeus - Estudiantes {% endblock %}
+
+{% block contenido %} 
+
+    <div class="card">
+        <div class="card-header">
+            <a
+            class="btn btn-success"
+            href="{% url 'crear' %}"
+            role="button"
+        >Crear Estudiantes</a
+        >
+    </div>
+        <div class="card-body">
+            <h4 class="card-title">Estudiantes</h4>
+            <!-- Haciendo la tabla -->
+            <div
+                class="table-responsive"
+            >
+                <table
+                    class="table table-primary"
+                >
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombres</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Clase</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for estudiante in estudiantes %}
+                            <tr class="">
+                                <td scope="row">{{ estudiante.id }}</td>
+                                <td>{{ estudiante.nombre }}</td>
+                                <td>{{ estudiante.apellido }}</td>
+                                <td><img src="{{ estudiante.foto.url }}" width="50px" height="50px" alt="Fotos"></td>
+                                <td>{{ estudiante.clase }}</td>
+                                <td>
+                                    <a
+                                        class="btn btn-primary"
+                                        href="{% url 'editar' estudiante.id %}"
+                                        role="button"
+                                        >Editar</a
+                                    >
+                                    <a
+                                        class="btn btn-danger"
+                                        href="{% url 'eliminar' estudiante.id %}"
+                                        role="button"
+                                        >Borrar</a
+                                    >
+                                </td>
+                            </tr>
+                        {% endfor %}                                 
+                    </tbody>
+                </table>
+            </div>
+            <!-- Termina la tabla -->
+        </div>
+        <div class="card-footer text-muted">Ing. José Omar Calderón G.</div>
+    </div>
+    
+
+{% endblock %}
